@@ -2,22 +2,23 @@ class Patient
   attr_accessor :name
 
   def initialize(name)
-    @name = name
-    @appointments = []
+    @name=name
   end
 
-  def add_appointment(appointment)
-    @appointments << appointment
-    appointment.patient = self
+   def new_appointment(doctor, date)
+    Appointment.new(date, self, doctor)
   end
 
   def appointments
-    @appointments
+    Appointment.all.select do |appointment|
+      appointment.patient == self
+    end
   end
 
   def doctors
-    self.appointments.collect do |appointment|
+    appointments.map do |appointment|
       appointment.doctor
     end
   end
-end	
+
+end
