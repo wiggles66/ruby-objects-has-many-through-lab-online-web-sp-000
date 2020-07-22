@@ -1,4 +1,3 @@
-
 class Appointment
   attr_accessor :date, :doctor, :patient
 
@@ -7,3 +6,5 @@ class Appointment
     @doctor = doctor
     doctor.add_appointment(self)
   end
+
+end 
